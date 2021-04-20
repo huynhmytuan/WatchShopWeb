@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace WatchShop.Models
 {
-    public class SampleData : DropCreateDatabaseAlways<WatchShopContext>
+    public class SampleData : DropCreateDatabaseIfModelChanges<WatchShopContext>
     {
         protected override void Seed(WatchShopContext context)
         {
