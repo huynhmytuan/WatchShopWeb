@@ -5,78 +5,76 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using WatchShop.Models;
 
-namespace WatchShop.Models
+public class ShoppingCart
 {
-    public class ShoppingCart
+    // Lấy giỏ hàng từ Session
+    public static ShoppingCart Cart
     {
-        // Lấy giỏ hàng từ Session
-        public static ShoppingCart Cart
+        get
         {
-            get
+            var cart = HttpContext.Current.Session["Cart"] as ShoppingCart;
+            // Nếu chưa có giỏ hàng trong session -> tạo mới và lưu vào session
+            if (cart == null)
             {
-                var cart = HttpContext.Current.Session["Cart"] as ShoppingCart;
-                // Nếu chưa có giỏ hàng trong session -> tạo mới và lưu vào session
-                if (cart == null)
-                {
-                    cart = new ShoppingCart();
-                    HttpContext.Current.Session["Cart"] = cart;
-                }
-                return cart;
+                cart = new ShoppingCart();
+                HttpContext.Current.Session["Cart"] = cart;
             }
+            return cart;
         }
+    }
 
-        // Chứa các mặt hàng đã chọn
-        public List<Product> Items = new List<Product>();
+    // Chứa các mặt hàng đã chọn
+    public List<Product> Items = new List<Product>();
 
-        public void Add(int id)
-        {
-            try // tìm thấy trong giỏ -> tăng số lượng lên 1
-            {
-                var item = Items.Single(i => i.Id == id);
-                item.Quantity++;
-            }
-            catch // chưa có trong giỏ -> truy vấn CSDL và bỏ vào giỏ
-            {
-                var db = new WatchShopContext();
-                var item = db.Products.Find(id);
-                item.Quantity = 1;
-                Items.Add(item);
-            }
-        }
-
-        public void Remove(int id)
+    public void Add(int id)
+    {
+        try // tìm thấy trong giỏ -> tăng số lượng lên 1
         {
             var item = Items.Single(i => i.Id == id);
-            Items.Remove(item);
+            item.Quantity++;
         }
-
-        public void Update(int id, int newQuantity)
+        catch // chưa có trong giỏ -> truy vấn CSDL và bỏ vào giỏ
         {
-            var item = Items.Single(i => i.Id == id);
-            item.Quantity = newQuantity;
+            var db = new WatchShopContext();
+            var item = db.Products.Find(id);
+            item.Quantity = 1;
+            Items.Add(item);
         }
+    }
 
-        public void Clear()
+    public void Remove(int id)
+    {
+        var item = Items.Single(i => i.Id == id);
+        Items.Remove(item);
+    }
+
+    public void Update(int id, int newQuantity)
+    {
+        var item = Items.Single(i => i.Id == id);
+        item.Quantity = newQuantity;
+    }
+
+    public void Clear()
+    {
+        Items.Clear();
+    }
+
+    public int Count
+    {
+        get
         {
-            Items.Clear();
+            return Items.Count;
         }
+    }
 
-        public int Count
+    public double Total
+    {
+        get
         {
-            get
-            {
-                return Items.Count;
-            }
-        }
-
-        public double Total
-        {
-            get
-            {
-                return Items.Sum(p =>
-                    p.UnitPrice * p.Quantity * (1 - p.Discount));
-            }
+            return Items.Sum(p =>
+                p.UnitPrice * p.Quantity * (1 - p.Discount));
         }
     }
 }

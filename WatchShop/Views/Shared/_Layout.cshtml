@@ -60,28 +60,18 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="~/Content/img/logo.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/Content/img/logo.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item">@Html.ActionLink("Trang chủ", "Index", "Home", null, new { @class = "nav-link" })</li>
-
-                        <li class="dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Thương Hiệu</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="shop.html">Sidebar Shop</a></li>
-                                <li><a href="shop-detail.html">Shop Detail</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
+                        <li class="nav-item">@Html.ActionLink("Sản phẩm", "Index", "Products", null, new { @class = "nav-link" })</li>
+                        @Html.Action("BrandMenu", "Home")
                         @Html.Partial("_Account")
                         <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                        @Html.Partial("_CartInfo")
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -89,13 +79,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu">
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
-                                <p>My Cart</p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
