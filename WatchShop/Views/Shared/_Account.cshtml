@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-                @Html.ActionLink("Tài Khoản", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link"})
+<li> @Html.ActionLink("Tài Khoản", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })</li>
 }
 else
 {
