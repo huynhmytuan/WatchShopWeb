@@ -3,3 +3,8 @@
 .logo{
     width: 160px;
 }
+
+.img-fluid {
+    max-width: 250px;
+    height: 250px;
+}
