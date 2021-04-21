@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WatchShop.Models.Supplier>
+
+
+@foreach (var item in Model)
+{
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="shop-cat-box">
+        <img class="img-fluid" src="~/Content/img/Brand/@item.Logo" alt="" />
+        <a class="btn hvr-hover" href="#">@item.Name</a>
+    </div>
+</div>
+}

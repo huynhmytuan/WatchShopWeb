@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WatchShop.Models.Product>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-3 col-md-6 special-grid top-featured">
+        <div class="products-single fix">
+            <div class="box-img-hover">
+                <div class="type-lb">
+                    <p class="sale">Sale</p>
+                </div>
+                <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" alt="Image">
+                <div class="mask-icon">
+                    <ul>
+                        <li><a href="@Url.Action("Details", "Products", new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                    </ul>
+                    <a class="cart" href="#">Add to Cart</a>
+                </div>
+            </div>
+            <div class="why-text">
+            @{
+                var price = item.UnitPrice;
+                var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                var result = price.ToString("#,###", cul.NumberFormat);
+                <h4>@item.Name</h4>
+                <h5 style="color:#848484"><strike>@result đ</strike></h5>
+                var old = item.UnitPrice;
+                var sale = item.Discount * item.UnitPrice;
+                var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
+                <br />
+                <h5>@finalPrice đ</h5>
+            }
+            </div>
+        </div>
+    </div>
+                }
+<!--end of sale off-->
