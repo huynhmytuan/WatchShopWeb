@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WatchShop.Models.Product>
+
+@foreach(var item in Model)
+{
+    <div class="item">
+        <div class="products-single fix">
+            <div class="box-img-hover">
+                <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" alt="Image">
+                <div class="mask-icon">
+                    <ul>
+                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                    </ul>
+                    <a class="cart" href="#">Add to Cart</a>
+                </div>
+            </div>
+            <div class="why-text">
+                <h4>@Html.DisplayFor(itemModel => item.Name)</h4>
+                <!--Display currency Vnd Format-->
+                @{
+                    var price = item.UnitPrice;
+                    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                    var result = price.ToString("#,###", cul.NumberFormat);
+                    <h5>@result đ</h5>
+                }
+            </div>
+        </div>
+    </div>
+}
