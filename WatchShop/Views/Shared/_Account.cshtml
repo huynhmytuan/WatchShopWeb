@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+                @Html.ActionLink("Tài Khoản", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+}
+else
+{
+}
