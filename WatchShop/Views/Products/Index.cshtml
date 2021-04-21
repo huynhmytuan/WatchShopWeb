@@ -6,6 +6,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <body>
+
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
         <div class="container">
@@ -13,18 +14,9 @@
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                     <div class="right-product-box">
                         <div class="product-item-filter row">
-                            <div class="col-12 col-sm-8 text-center text-sm-left">
-                                <div class="toolbar-sorter-right">
-                                    <span>Sắp xếp </span>
-                                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Đ VND">
-                                        <option data-display="Select">Nothing</option>
-                                        <option value="1">Tên sản phẩm</option>
-                                        <option value="2">Giá cao → thấp </option>
-                                        <option value="3">Giá thấp → cao</option>
-                                    </select>
-                                </div>
-                                <p></p>
-                            </div>
+                            @Html.ActionLink("Xếp Theo Tên", "Index", new { sortOrder = ViewBag.NameSortParm })
+                            @Html.ActionLink("Giá thấp → cao ", "Index", new { sortOrder = ViewBag.PriceLowHigh })
+                            @Html.ActionLink("Giá cao → thấp ", "Index", new { sortOrder = ViewBag.PriceHighLow })
                             <div class="col-12 col-sm-4 text-center text-sm-right">
                                 <ul class="nav nav-tabs ml-auto">
                                     <li>
@@ -124,8 +116,8 @@
                     <div class="product-categori">
                         <div class="search-product">
                             <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                                <input class="form-control" placeholder="Nhập để tìm kiếm" id="SearchString" name="SearchString" type="text" value="">
+                                <button type="submit" value="Search"> <i class="fa fa-search"></i> </button>
                             </form>
                         </div>
                         <div class="filter-sidebar-left">
@@ -137,18 +129,7 @@
 
                             </div>
                         </div>
-                        <div class="filter-price-left">
-                            <div class="title-left">
-                                <h3>Price</h3>
-                            </div>
-                            <div class="price-box-slider">
-                                <div id="slider-range"></div>
-                                <p>
-                                    <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filter</button>
-                                </p>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

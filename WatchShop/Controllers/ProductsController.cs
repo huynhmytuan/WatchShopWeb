@@ -15,6 +15,19 @@ namespace WatchShop.Controllers
     {
         private WatchShopContext db = new WatchShopContext();
 
+        //
+        // GET: /Product/
+        public ActionResult Supplier (String SupplierID = null)
+        {
+            if (SupplierID != null)
+            {
+                ViewBag.PageName = db.Suppliers.SingleOrDefault(p => p.Name != null).Name;
+                var model = db.Products.Include("Supplier").Where(p => p.SupplierId == SupplierID);
+                return View(model);
+            }
+            return View();
+        }
+
         // GET: Products
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -163,6 +176,12 @@ namespace WatchShop.Controllers
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult FeaturedProducts()
+        {
+            var model = db.Products.Where(p => p.Special == true).Take(6);
+            return PartialView("_FeaturedProducts", model);
         }
 
         protected override void Dispose(bool disposing)

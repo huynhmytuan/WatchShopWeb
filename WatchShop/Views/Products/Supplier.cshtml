@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WatchShop.Models.Product>
+
+@{
+    ViewBag.Title = ViewBag.PageName;
+}
+
+<h2>Supplier</h2>
+
+@{
+    var sup = Model.First().Supplier;
+    <div class="row">
+        <div class="col-xl-5 col-lg-5 col-md-6">
+            <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+
+                    <div class="carousel-item active"> <img class="d-block w-100" src="~/Content/img/products/@sup.Logo" /> </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-7 col-md-6">
+            <div class="single-product-details">
+                <h2>@sup.Name</h2>
+                <br />
+                <h3>Email: @sup.Phone</h3>
+                    <h4>Short Description:</h4>
+                <div class="add-to-btn">
+                    <div class="share-bar">
+                        <a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
+                        <a class="btn hvr-hover" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+                        <a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

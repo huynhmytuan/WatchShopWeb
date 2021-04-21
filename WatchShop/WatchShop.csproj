@@ -355,6 +355,8 @@
     <Content Include="Views\Shared\_Suppliers.cshtml" />
     <Content Include="Views\Shared\_Special.cshtml" />
     <Content Include="Views\Shared\_Saleoff.cshtml" />
+    <Content Include="Views\Shared\_FeaturedProducts.cshtml" />
+    <Content Include="Views\Products\Supplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
