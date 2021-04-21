@@ -34,5 +34,22 @@ namespace WatchShop.Controllers
             var model = db.Suppliers;
             return PartialView("_BrandMenu", model);
         }
+
+        public ActionResult Suppliers()
+        {
+            var model = db.Suppliers;
+            return PartialView("_Suppliers", model);
+        }
+
+        public ActionResult Special()
+        {
+            var model = db.Products.Where(p => p.Special == true).Take(4);
+            return PartialView("_Special", model);
+        }
+        public ActionResult Saleoff()
+        {
+            var model = db.Products.Where(p => p.Discount > 0).Take(4);
+            return PartialView("_Saleoff", model);
+        }
     }
 }

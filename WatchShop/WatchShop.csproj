@@ -222,6 +222,11 @@
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\superslides.css" />
+    <Content Include="Content\img\banner\banner1.jpeg" />
+    <Content Include="Content\img\banner\banner2.jpg" />
+    <Content Include="Content\img\banner\banner3.jpg" />
+    <Content Include="Content\img\banner\offer-01.jpg" />
+    <Content Include="Content\img\banner\offer-02.jpg" />
     <Content Include="Content\img\Brand\apple.jpg" />
     <Content Include="Content\img\Brand\casio.jpg" />
     <Content Include="Content\img\Brand\hublot.jpg" />
@@ -250,17 +255,6 @@
     <Content Include="Content\img\products\1014.jpg" />
     <Content Include="Content\img\products\1015.jpg" />
     <Content Include="Content\img\products\1016.jpg" />
-    <Content Include="Content\img\suppliers\amd-logo.jpg" />
-    <Content Include="Content\img\suppliers\apple.jpg" />
-    <Content Include="Content\img\suppliers\dell-logo.jpg" />
-    <Content Include="Content\img\suppliers\dell-logo2.jpg" />
-    <Content Include="Content\img\suppliers\hp-logo.jpg" />
-    <Content Include="Content\img\suppliers\intel-logo.jpg" />
-    <Content Include="Content\img\suppliers\motorola.jpg" />
-    <Content Include="Content\img\suppliers\nokia.jpg" />
-    <Content Include="Content\img\suppliers\samsung-logo-2.jpg" />
-    <Content Include="Content\img\suppliers\samsung.jpg" />
-    <Content Include="Content\img\suppliers\sonny-ericsson.jpg" />
     <Content Include="Content\js\baguetteBox.min.js" />
     <Content Include="Content\js\bootsnav.js" />
     <Content Include="Content\js\bootstrap-select.js" />
@@ -351,6 +345,9 @@
     <Content Include="Views\Shared\_BrandMenu.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Shared\_Suppliers.cshtml" />
+    <Content Include="Views\Shared\_Special.cshtml" />
+    <Content Include="Views\Shared\_Saleoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
