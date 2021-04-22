@@ -101,7 +101,7 @@
                                                         <p>
                                                             @Html.DisplayFor(modelItem => item.Description)
                                                         </p>
-                                                        <a class="btn btn-default add-to-cart" data-id="@item.Id">Add to Cart</a>
+                                                        <a class="btn btn-default add-to-cart" href="@Url.Action("Add","Cart",new { id = item.Id })" data-id="@item.Id">Add to Cart</a>
 
                                                     </div>
                                                 </div>
