@@ -18,15 +18,22 @@ namespace WatchShop.Controllers
             return View(cart.Items);
         }
 
+        public ActionResult CartView()
+        {
+            var cart = ShoppingCart.Cart;
+            return PartialView("_SideCart",cart.Items);
+        }
+
         public ActionResult Add(int id)
         {
             var cart = ShoppingCart.Cart;
             cart.Add(id);
 
             var info = new { cart.Count, cart.Total };
-            return RedirectToAction("Index");
-            
+            //return RedirectToAction("Index");
+            return Json(info, JsonRequestBehavior.AllowGet);
         }
+
 
         public ActionResult Remove(int id)
         {

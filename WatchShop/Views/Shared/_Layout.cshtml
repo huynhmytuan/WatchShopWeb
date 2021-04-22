@@ -19,7 +19,7 @@
                     </div>
                     <div class="our-link" style="float:right">
                         <ul>
-                            <li><a href="#"><i class="fab fa-opencart"></i> Sale Off - </a></li>
+                            <li><a href="#"><i class="fab fa-opencart"></i> Zenith Watch - </a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,15 +30,6 @@
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
-                                <li>
-                                    20% off với tất cả sản phần từ ngày 15/10!
-                                </li>
-                                <li>
-                                    50% - 80% off cho khách hàng thân thiết!
-                                </li>
-                                <li>
-                                    Sản phầm uy tín, chất lượng.
-                                </li>
                                 <li>
                                     Đảm bảo hàng chính hãng, bảo hành 12 tháng!
                                 </li>
@@ -71,7 +62,7 @@
                         @Html.Action("BrandMenu", "Home")
                         @Html.Partial("_Account")
                         <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                        @Html.Partial("_CartInfo")
+
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -79,7 +70,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        
+                        @Html.Partial("_CartInfo")
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
@@ -88,26 +79,8 @@
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
+                    <ul class="cart-list" id="_recentCart">
+                        @Html.Action("CartView", "Cart")
                     </ul>
                 </li>
             </div>
@@ -184,7 +157,9 @@
         </div>
         <!-- End copyright  -->
     </div>
-
+    <script type="text/javascript">
+            setInterval("$('#_recentCart').load('Cart/CartView')", 1000);
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
