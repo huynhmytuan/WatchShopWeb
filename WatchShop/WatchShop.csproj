@@ -363,9 +363,9 @@
     <Content Include="Views\Shared\_Special.cshtml" />
     <Content Include="Views\Shared\_Saleoff.cshtml" />
     <Content Include="Views\Shared\_FeaturedProducts.cshtml" />
-    <Content Include="Views\Products\Supplier.cshtml" />
     <Content Include="Views\test\Index.cshtml" />
     <Content Include="Views\Account\Denied.cshtml" />
+    <Content Include="Views\Home\Supplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

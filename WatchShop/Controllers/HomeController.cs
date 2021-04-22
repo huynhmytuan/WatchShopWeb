@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WatchShop.Models;
@@ -50,6 +51,20 @@ namespace WatchShop.Controllers
         {
             var model = db.Products.Where(p => p.Discount > 0).Take(4);
             return PartialView("_Saleoff", model);
+        }
+
+        public ActionResult Supplier (String id)
+        {
+            if (id == "")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                ViewBag.PageName = db.Suppliers.SingleOrDefault(p => p.Name != null).Name;
+                var model = db.Products.Include("Supplier").Where(p => p.SupplierId == id);
+                return View(model);
+            }
         }
     }
 }
