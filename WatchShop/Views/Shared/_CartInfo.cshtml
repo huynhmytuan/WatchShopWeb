@@ -1,8 +1,8 @@
 ﻿
-<li class="nav-link">
-    <a href="@Url.Action("Index","Cart")">
-        Giỏ Hàng
+<li class="nav-link side-menu">
+    <a href="@Url.Action("CartView","Cart")" id="nn-cart-image">
+        <b>GIỎ HÀNG</b>
         <i class="fa fa-shopping-bag"></i>
-        <span class="badge">( @ShoppingCart.Cart.Count )</span>
+        <span class="badge" id="nn-cart-count">( @ShoppingCart.Cart.Count )</span>
     </a>
 </li>

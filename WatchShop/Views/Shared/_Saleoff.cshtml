@@ -13,24 +13,50 @@
                     <ul>
                         <li><a href="@Url.Action("Details", "Products", new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                     </ul>
-                    <a class="cart" href="@Url.Action("Add","Cart",new { id = item.Id })">Add to Cart</a>
+                 <button type="button" class="btn hvr-hover add-to-cart" data-id="@item.Id">Thêm Vào giỏ hàng</button>
                 </div>
             </div>
             <div class="why-text">
-            @{
-                var price = item.UnitPrice;
-                var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-                var result = price.ToString("#,###", cul.NumberFormat);
-                <h4>@item.Name</h4>
-                <h5 style="color:#848484"><strike>@result đ</strike></h5>
-                var old = item.UnitPrice;
-                var sale = item.Discount * item.UnitPrice;
-                var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
-                <br />
-                <h5>@finalPrice đ</h5>
-            }
+                @{
+                    var price = item.UnitPrice;
+                    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                    var result = price.ToString("#,###", cul.NumberFormat);
+                    <h4>@item.Name</h4>
+                    <h5 style="color:#848484"><strike>@result đ</strike></h5>
+                    var old = item.UnitPrice;
+                    var sale = item.Discount * item.UnitPrice;
+                    var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
+                    <br />
+                    <h5>@finalPrice đ</h5>
+                }
             </div>
         </div>
     </div>
-                }
+}
 <!--end of sale off-->
+@section scripts{
+    <script>
+            $(function () {
+                $(".add-to-cart").click(function () {
+                    pid = $(this).attr("data-id");
+                    $.ajax({
+                        url: "/Cart/Add",
+                        data: { id: pid },
+                        success: function (response) {
+                            $("#nn-cart-count").html(response.Count);
+                            $("#nn-cart-total").html(response.Total);
+                        }
+                    });
+
+                    // hieu ung bay vao gio
+                    cssfly = ".fly-effect {background:url(?);background-size:100% 100%;}";
+                    src = $("#i" + pid).attr("src");
+                    newcssfly = cssfly.replace("?", src);
+                    $("#cart-fly").html(newcssfly);
+
+                    options = { to: "#nn-cart-image", className: "fly-effect" };
+                    $("#i" + pid).effect("transfer", options, 500, function () { });
+                });
+            });
+    </script>
+}
