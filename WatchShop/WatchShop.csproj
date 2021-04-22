@@ -190,8 +190,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -350,9 +352,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Shared\_Account.cshtml" />
     <Content Include="Views\Shared\_CartInfo.cshtml" />
     <Content Include="Views\Shared\_BrandMenu.cshtml" />
@@ -363,6 +362,11 @@
     <Content Include="Views\Shared\_Saleoff.cshtml" />
     <Content Include="Views\Shared\_FeaturedProducts.cshtml" />
     <Content Include="Views\Account\Denied.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Oder\Checkout.cshtml" />
+    <Content Include="Views\Oder\Detail.cshtml" />
+    <Content Include="Views\Oder\List.cshtml" />
+    <Content Include="Views\test\Index.cshtml" />
     <Content Include="Views\Home\Supplier.cshtml" />
   </ItemGroup>
   <ItemGroup>

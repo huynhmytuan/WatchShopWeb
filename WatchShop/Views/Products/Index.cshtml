@@ -47,7 +47,7 @@
                                                                 <li><a href="@Url.Action("Details","Products" ,new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fas fa-eye"></i></a></li>
 
                                                             </ul>
-                                                            <a class="cart" href="#">Thêm vào giỏ hàng</a>
+                                                            <a class="cart" href="@Url.Action("Add","Cart",new { id = item.Id })">Thêm vào giỏ hàng</a>
                                                         </div>
                                                     </div>
                                                     <div class="why-text">
@@ -101,7 +101,8 @@
                                                         <p>
                                                             @Html.DisplayFor(modelItem => item.Description)
                                                         </p>
-                                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                        <a class="btn btn-default add-to-cart" href="@Url.Action("Add","Cart",new { id = item.Id })" data-id="@item.Id">Add to Cart</a>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +130,7 @@
 
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -139,6 +140,22 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <script>
+        $(function () {
+            $(".add-to-cart").click(function () {
+                pid = $(this).attr("data-id");
+                $.ajax({
+                    url: "/Cart/Add",
+                    data: { id: pid },
+                    success: function (response) {
+                        alert("Đã thêm vào giỏ hàng thành công.")
+                        $("#nn-cart-count").html(response.Count);
+                        $("#nn-cart-total").html(response.Total);
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- ALL JS FILES -->
     <script src="js/jquery-3.2.1.min.js"></script>
