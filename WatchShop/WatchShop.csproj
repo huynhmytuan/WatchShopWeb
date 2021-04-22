@@ -366,7 +366,6 @@
     <Content Include="Views\Oder\Checkout.cshtml" />
     <Content Include="Views\Oder\Detail.cshtml" />
     <Content Include="Views\Oder\List.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
     <Content Include="Views\Home\Supplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
