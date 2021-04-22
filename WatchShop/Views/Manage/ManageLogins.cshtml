@@ -1,15 +1,32 @@
 ﻿@model WatchShop.Models.ManageLoginsViewModel
+@using Microsoft.AspNet.Identity
 @using Microsoft.Owin.Security
 @{
-    ViewBag.Title = "Manage your external logins";
+    ViewBag.Title = "Quản lý danh sách tài khoản liên kết";
 }
 
-<h2>@ViewBag.Title.</h2>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>@ViewBag.Title.</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Manage")">Tài Khoản</a></li>
+                    <li class="breadcrumb-item active">Liên kết</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0) {
+    if (loginProviders.Count() == 0)
+    {
         <div>
             <p>
                 There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
@@ -21,7 +38,7 @@
     {
         if (Model.CurrentLogins.Count > 0)
         {
-            <h4>Registered Logins</h4>
+     
             <table class="table">
                 <tbody>
                     @foreach (var account in Model.CurrentLogins)
@@ -37,7 +54,7 @@
                                         <div>
                                             @Html.Hidden("loginProvider", account.LoginProvider)
                                             @Html.Hidden("providerKey", account.ProviderKey)
-                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                            <input type="submit" class="btn btn-custom" value="Remove" title="Hủy liên kết @account.LoginProvider với tài khoản của bạn" />
                                         </div>
                                     }
                                 }
@@ -53,16 +70,18 @@
         }
         if (Model.OtherLogins.Count > 0)
         {
+
             using (Html.BeginForm("LinkLogin", "Manage"))
             {
                 @Html.AntiForgeryToken()
                 <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in Model.OtherLogins)
-                    {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    }
-                </p>
+
+                    <p>
+                        @foreach (AuthenticationDescription p in Model.OtherLogins)
+                        {
+                            <span></span><button type="submit" class="btn btn-custom" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Liên kết với tài khoản @p.Caption">Liên kết với tài khoản @p.AuthenticationType</button><br />
+                        }
+                    </p>
                 </div>
             }
         }

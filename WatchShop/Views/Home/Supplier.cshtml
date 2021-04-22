@@ -1,0 +1,165 @@
+﻿@model PagedList.IPagedList<WatchShop.Models.Product>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Supplier";
+}
+
+<body>
+    <h1></h1>
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            @Html.ActionLink("Xếp Theo Tên", "Index", new { sortOrder = ViewBag.NameSortParm })
+                            @Html.ActionLink("Giá thấp → cao ", "Index", new { sortOrder = ViewBag.PriceLowHigh })
+                            @Html.ActionLink("Giá cao → thấp ", "Index", new { sortOrder = ViewBag.PriceHighLow })
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale">Sale</p>
+                                                        </div>
+                                                        <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" alt="Image">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="@Url.Action("Details","Products" ,new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fas fa-eye"></i></a></li>
+
+                                                            </ul>
+                                                            <a class="cart" href="#">Thêm vào giỏ hàng</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="why-text">
+                                                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                                                        <!--Display currency Vnd Format-->
+                                                        @{
+                                                            var price = item.UnitPrice;
+                                                            var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                                                            var result = price.ToString("#,###", cul.NumberFormat);
+                                                            <h5>@result đ</h5>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="list-view-box">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">Sale</p>
+                                                            </div>
+                                                            <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="@Url.Action("Details","Products" ,new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                    <div class="why-text full-width">
+                                                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                                                        <!--Display currency Vnd Format-->
+                                                        @{
+                                                            var price = item.UnitPrice;
+                                                            var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                                                            var result = price.ToString("#,###", cul.NumberFormat);
+                                                            <h5>@result đ</h5>
+                                                        }
+                                                        <p>
+                                                            @Html.DisplayFor(modelItem => item.Description)
+                                                        </p>
+                                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Nhập để tìm kiếm" id="SearchString" name="SearchString" type="text" value="">
+                                <button type="submit" value="Search"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Loại đồng hồ</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                                <a href="#" class="list-group-item list-group-item-action"> <!--Html.DisplayNameFor(model => model.Category.Name)-->  <small class="text-muted">(150) </small></a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
+
+

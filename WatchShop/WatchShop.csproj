@@ -235,6 +235,7 @@
     <Content Include="Content\img\banner\banner1.jpeg" />
     <Content Include="Content\img\banner\banner2.jpg" />
     <Content Include="Content\img\banner\banner3.jpg" />
+    <Content Include="Content\img\banner\banner4.png" />
     <Content Include="Content\img\banner\offer-01.jpg" />
     <Content Include="Content\img\banner\offer-02.jpg" />
     <Content Include="Content\img\Brand\apple.jpg" />
@@ -265,6 +266,9 @@
     <Content Include="Content\img\products\1014.jpg" />
     <Content Include="Content\img\products\1015.jpg" />
     <Content Include="Content\img\products\1016.jpg" />
+    <Content Include="Content\img\team-1.jpg" />
+    <Content Include="Content\img\team-2.jpg" />
+    <Content Include="Content\img\team-3.jpg" />
     <Content Include="Content\js\baguetteBox.min.js" />
     <Content Include="Content\js\bootsnav.js" />
     <Content Include="Content\js\bootstrap-select.js" />
@@ -357,12 +361,13 @@
     <Content Include="Views\Shared\_Special.cshtml" />
     <Content Include="Views\Shared\_Saleoff.cshtml" />
     <Content Include="Views\Shared\_FeaturedProducts.cshtml" />
-    <Content Include="Views\Products\Supplier.cshtml" />
     <Content Include="Views\Account\Denied.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Oder\Checkout.cshtml" />
     <Content Include="Views\Oder\Detail.cshtml" />
     <Content Include="Views\Oder\List.cshtml" />
+    <Content Include="Views\test\Index.cshtml" />
+    <Content Include="Views\Home\Supplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
