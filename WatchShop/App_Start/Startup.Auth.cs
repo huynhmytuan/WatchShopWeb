@@ -54,15 +54,15 @@ namespace WatchShop
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "294823725683749",
+               appSecret: "21a653e155fdacf74eca8ed9cb124598");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "371186657947-da177tee7iqil6fjc60n2e962db82g68.apps.googleusercontent.com",
+                ClientSecret = "tit_btnhsKkt_CckguhfynOm"
+            });
         }
     }
 }
