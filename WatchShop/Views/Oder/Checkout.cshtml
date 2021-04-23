@@ -3,66 +3,70 @@
     ViewBag.Title = "Checkout";
 }
 
-<h2>Checkout</h2>
 <div class="row">
     <div class="col-sm-6 col-lg-6 mb-3">
         @using (Html.BeginForm("Purchase", "Oder"))
         {
         <div class="title-left">
-            <h3>Billing address</h3>
+            <h3>Đơn hàng mẫu</h3>
         </div>
         <form class="needs-validation" novalidate>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label class="control-label col-md-2">Order Date</label>
+                    <b><label class="control-label">Ngày đặt hàng</label></b>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.OrderDate, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label class="control-label col-md-2">Required Date</label>
+                    <b><label class="control-label">Ngày lập đơn hàng</label></b>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.RequireDate, new { @class = "form-control" })
                     </div>
-                    <div class="invalid-feedback"> Valid Require Date is required. </div>
+                    <div class="invalid-feedback"> Ngày lập đơn hàng phải trùng với ngày đặt hàng </div>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="control-label col-md-2">Name</label>
-                <div class="input-group">
+                <b><label class="control-label col-md-2">Người đặt hàng</label></b>
+                <div class="col-md-10">
                     @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
-                    <div class="invalid-feedback"> Your username is required. </div>
+                    <div class="invalid-feedback"> Tên người đặt hàng cần phải có! </div>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="control-label col-md-2">Receiver Name</label>
+                <b><label class="control-label col-md-2">Người nhận</label></b>
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.Receiver, new { @class = "form-control" })
                 </div>
-                <div class="invalid-feedback"> Please enter Receiver for shipping updates. </div>
+                <div class="invalid-feedback"> Tên người nhận cần phải có </div>
             </div>
             <div class="mb-3">
-                <label class="control-label col-md-2">Address</label>
+                <b><label class="control-label col-md-2">Address</label></b>
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
                 </div>
-                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                <div class="invalid-feedback"> Địa chỉ nhận hàng cần phải có </div>
             </div>
             <div class="mb-3">
-                <label class="control-label col-md-2">Total Amount</label>
+                <b><label class="control-label col-md-2">Total Amount</label></b>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @readonly = "true" })
+                    @{
+                        var price = Model.Amount;
+                        var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                        var result = price.ToString("#,###", cul.NumberFormat);
+                        <h5>@result đ</h5>
+                    }
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2">Description</label>
+                <b><label class="control-label">Thông tin thêm</label></b>
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "5" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Purchase" class="btn btn-default" />
+                    <input type="submit" value="Xác nhận đơn hàng" class="btn btn-default" />
                 </div>
             </div>
         </form>

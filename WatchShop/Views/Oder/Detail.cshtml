@@ -4,77 +4,95 @@
     ViewBag.Title = "Checkout";
 }
 
-<h2>Order Information</h2>
+<div class="row">
 
-<div class="form-horizontal">
+    <div class="col-sm-6 col-lg-6 mb-3">
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Customer Name</label>
-        <div class="col-md-10">
-            @Model.Username
+        <div class="form-horizontal">
+            <div class="title-left">
+                <h3>Thông tin đơn hàng</h3>
+            </div>
+            <div class="form-group">
+                <b><label class="control-label">Tên người đặt hàng</label></b>
+                <div class="col-md-10">
+                    @Model.Username
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Ngày Order</label></b>
+                <div class="col-md-10">
+                    @Html.FormatValue(Model.OrderDate, "{0:yyyy-MM-dd}")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Ngày xác lập đơn hàng</label></b>
+                <div class="col-md-10">
+                    @Html.FormatValue(Model.RequireDate, "{0:yyyy-MM-dd}")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Người nhận</label></b>
+                <div class="col-md-10">
+                    @Model.Receiver
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Địa chỉ</label></b>
+                <div class="col-md-10">
+                    @Model.Address
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Tổng tiền</label></b>
+                <div class="col-md-10">
+                    @Html.FormatValue(Model.Amount, "{0:c}"))
+                    @{
+                        var price = Model.Amount;
+                        var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                        var result = price.ToString("#,###", cul.NumberFormat);
+                        <h5>@result đ</h5>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <b><label class="control-label">Thông tin thêm</label></b>
+                <div class="col-md-10">
+                    @Model.Description
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Order Date</label>
-        <div class="col-md-10">
-            @Html.FormatValue(Model.OrderDate, "{0:yyyy-MM-dd}")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Required Date</label>
-        <div class="col-md-10">
-            @Html.FormatValue(Model.RequireDate, "{0:yyyy-MM-dd}")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Receiver Name</label>
-        <div class="col-md-10">
-            @Model.Receiver
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Email Address</label>
-        <div class="col-md-10">
-            @Model.Address
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Total Amount</label>
-        <div class="col-md-10">
-            @Html.FormatValue(Model.Amount, "{0:c}"))
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Description</label>
-        <div class="col-md-10">
-            @Model.Description
+    <div class="col-sm-6 col-lg-6 mb-3">
+        <div class="form-horizontal">
+            <div class="title-left">
+                <h3>Chi tiết đơn hàng</h3>
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Discount</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                </tr>
+                @foreach (var d in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@d.Product.Name</td>
+                        <td>@d.UnitPrice</td>
+                        <td>@d.Discount</td>
+                        <td>@d.Quantity</td>
+                        <td>@(d.UnitPrice * d.Quantity * (1 - d.Discount))</td>
+                    </tr>
+                }
+            </table>
         </div>
     </div>
 </div>
 
-<h2>Order Details</h2>
-<table class="table table-hover">
-    <tr>
-        <th>Name</th>
-        <th>Unit Price</th>
-        <th>Discount</th>
-        <th>Quantity</th>
-        <th>Amount</th>
-    </tr>
-    @foreach (var d in Model.OrderDetails)
-    {
-        <tr>
-            <td>@d.Product.Name</td>
-            <td>@d.UnitPrice</td>
-            <td>@d.Discount</td>
-            <td>@d.Quantity</td>
-            <td>@(d.UnitPrice * d.Quantity * (1 - d.Discount))</td>
-        </tr>
-    }
-</table>
