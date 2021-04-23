@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.3.9.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.9.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.props" Condition="Exists('..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.props')" />
   <Import Project="..\packages\runtime.win10-x86.Microsoft.Net.Native.Compiler.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.props" Condition="Exists('..\packages\runtime.win10-x86.Microsoft.Net.Native.Compiler.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.props')" />
   <Import Project="..\packages\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.props" Condition="Exists('..\packages\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.props')" />
@@ -370,9 +369,7 @@
     <Content Include="Views\Home\Supplier.cshtml" />
     <Content Include="Views\Shared\_SideCart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -437,7 +434,6 @@
     <Error Condition="!Exists('..\packages\runtime.win10-x86.Microsoft.Net.Native.Compiler.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\runtime.win10-x86.Microsoft.Net.Native.Compiler.2.2.3\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Native.Compiler.2.2.3\build\Microsoft.Net.Native.Compiler.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.9.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.9.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>

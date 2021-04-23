@@ -12,7 +12,6 @@ namespace WatchShop.Models
     public partial class OrderDetail
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }

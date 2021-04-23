@@ -14,7 +14,7 @@ namespace WatchShop.Controllers
         public ActionResult Checkout()
         {
             var model = new Order();
-            model.CustomerId = User.Identity.Name;
+            model.Username = User.Identity.Name;
             model.OrderDate = DateTime.Now.Date;
             model.Amount = ShoppingCart.Cart.Total;
 
@@ -29,7 +29,7 @@ namespace WatchShop.Controllers
             {
                 var d = new OrderDetail
                 {
-
+                    Order = model,
                     ProductId = p.Id,
                     UnitPrice = p.UnitPrice,
                     Discount = p.Discount,
@@ -50,16 +50,18 @@ namespace WatchShop.Controllers
             return RedirectToAction("Detail", new { id = model.Id });
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, Order model)
         {
+            var cart = ShoppingCart.Cart;
+            cart.Clear();
+            RedirectToAction("Detail", new { id = model.Id });
             var order = db.Orders.Find(id);
             return View(order);
         }
-
         public ActionResult List()
         {
             var orders = db.Orders
-                .Where(o => o.CustomerId == User.Identity.Name);
+                .Where(o => o.Username == User.Identity.Name);
             return View(orders);
         }
     }
