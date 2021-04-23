@@ -16,6 +16,7 @@ namespace WatchShop.Controllers
             var model = new Order();
             model.Username = User.Identity.Name;
             model.OrderDate = DateTime.Now.Date;
+            model.RequireDate = DateTime.Now.Date;
             model.Amount = ShoppingCart.Cart.Total;
 
             return View(model);
