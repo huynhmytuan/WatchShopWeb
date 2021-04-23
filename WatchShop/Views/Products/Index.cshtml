@@ -48,7 +48,7 @@
 
                                                             </ul>
 
-                                                            <button type="button" class="btn hvr-hover add-to-cart" data-id="@item.Id">Thêm Vào giỏ hàng</button>
+                                                            <button type="button" class="btn hvr-hover add-to-cart" data-id="@item.Id" style="color:white;">Thêm Vào giỏ hàng</button>
                                                         </div>
                                                     </div>
                                                     <div class="why-text">
@@ -58,7 +58,12 @@
                                                             var price = item.UnitPrice;
                                                             var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
                                                             var result = price.ToString("#,###", cul.NumberFormat);
-                                                            <h5>@result đ</h5>
+                                                            <h5 style="color:#848484"><strike>@result đ</strike></h5>
+                                                            var old = item.UnitPrice;
+                                                            var sale = item.Discount * item.UnitPrice;
+                                                            var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
+                                                            <br />
+                                                            <h5>@finalPrice đ</h5>
                                                         }
 
                                                     </div>
@@ -89,18 +94,23 @@
                                                 </div>
                                                 <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                                     <div class="why-text full-width">
-                                                        <h4><a href="@Url.Action("Details","Products" ,new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="Chi tiết">@Html.DisplayFor(modelItem => item.Name)</a></h4>
+                                                        <h4><a href="@Url.Action("Details","Products" ,new { id = item.Id })" data-toggle="tooltip" data-placement="right" title="Chi tiết" style="color:black;">@Html.DisplayFor(modelItem => item.Name)</a></h4>
                                                         <!--Display currency Vnd Format-->
                                                         @{
                                                             var price = item.UnitPrice;
                                                             var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
                                                             var result = price.ToString("#,###", cul.NumberFormat);
-                                                            <h5>@result đ</h5>
+                                                            <h5 style="color:#848484"><strike>@result đ</strike></h5>
+                                                            var old = item.UnitPrice;
+                                                            var sale = item.Discount * item.UnitPrice;
+                                                            var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
+                                                            <br />
+                                                            <h5>@finalPrice đ</h5>
                                                         }
                                                         <p>
                                                             @Html.DisplayFor(modelItem => item.Description)
                                                         </p>
-                                                        <button type="button" class="btn hvr-hover add-to-cart" data-id="@item.Id">Thêm Vào giỏ hàng</button>
+                                                        <button type="button" class="btn hvr-hover add-to-cart" data-id="@item.Id" style="color:white;">Thêm Vào giỏ hàng</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,6 +118,10 @@
                                     }
                                 </div>
                             </div>
+                        </div>
+                        <div class="center" style="margin-left:300px">
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                         </div>
                     </div>
                 </div>
@@ -135,53 +149,51 @@
         </div>
     </div>
     <!-- End Shop Page -->
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-    @section scripts{
-        <script>
-            $(function () {
-                $(".add-to-cart").click(function () {
-                    pid = $(this).attr("data-id");
-                    $.ajax({
-                        url: "/Cart/Add",
-                        data: { id: pid },
-                        success: function (response) {
-                            $("#nn-cart-count").html(response.Count);
-                            $("#nn-cart-total").html(response.Total);
-                        }
+        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+        @section scripts{
+            <script>
+                $(function () {
+                    $(".add-to-cart").click(function () {
+                        pid = $(this).attr("data-id");
+                        $.ajax({
+                            url: "/Cart/Add",
+                            data: { id: pid },
+                            success: function (response) {
+                                $("#nn-cart-count").html(response.Count);
+                                $("#nn-cart-total").html(response.Total);
+                            }
+                        });
+
+                        // hieu ung bay vao gio
+                        cssfly = ".fly-effect {background:url(?);background-size:100% 100%;}";
+                        src = $("#i" + pid).attr("src");
+                        newcssfly = cssfly.replace("?", src);
+                        $("#cart-fly").html(newcssfly);
+
+                        options = { to: "#nn-cart-image", className: "fly-effect" };
+                        $("#i" + pid).effect("transfer", options, 500, function () { });
                     });
-
-                    // hieu ung bay vao gio
-                    cssfly = ".fly-effect {background:url(?);background-size:100% 100%;}";
-                    src = $("#i" + pid).attr("src");
-                    newcssfly = cssfly.replace("?", src);
-                    $("#cart-fly").html(newcssfly);
-
-                    options = { to: "#nn-cart-image", className: "fly-effect" };
-                    $("#i" + pid).effect("transfer", options, 500, function () { });
                 });
-            });
-        </script>
-    }
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+            </script>
+        }
+        <!-- ALL JS FILES -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- ALL PLUGINS -->
+        <script src="js/jquery.superslides.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/inewsticker.js"></script>
+        <script src="js/bootsnav.js."></script>
+        <script src="js/images-loded.min.js"></script>
+        <script src="js/isotope.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/baguetteBox.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/form-validator.min.js"></script>
+        <script src="js/contact-form-script.js"></script>
+        <script src="js/custom.js"></script>
 </body>
 
 </html>

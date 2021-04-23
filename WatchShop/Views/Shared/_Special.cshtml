@@ -17,12 +17,17 @@
                 </div>
             </div>
             <div class="why-text">
-                <h4>@item.Name</h4>
+                <h4><a href="@Url.Action("Details","Products" ,new { id = item.Id })" style="color:white;">@item.Name</a></h4>
                 @{
-                    var price = item.UnitPrice;
                     var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                    var price = item.UnitPrice;
                     var result = price.ToString("#,###", cul.NumberFormat);
-                    <h5>@result đ</h5>
+                    <h5 style="color:#848484"><strike>@result đ</strike></h5>
+                    var old = item.UnitPrice;
+                    var sale = item.Discount * item.UnitPrice;
+                    var finalPrice = (old - sale).ToString("#,###", cul.NumberFormat); ;
+                    <br />
+                    <h5>@finalPrice đ</h5>
                 }
             </div>
         </div>
