@@ -35,7 +35,11 @@ namespace WatchShop.Controllers
                     Discount = p.Discount,
                     Quantity = p.Quantity
                 };
-
+                var prod = db.Products.Find(p.Id);
+                db.Products.Remove(prod);
+                db.SaveChanges();
+                prod.Views = prod.Views + 1;
+                db.Products.Add(prod);
                 db.OrderDetails.Add(d);
             }
             db.SaveChanges();
@@ -52,6 +56,7 @@ namespace WatchShop.Controllers
 
         public ActionResult Detail(int id, Order model)
         {
+            
             var cart = ShoppingCart.Cart;
             cart.Clear();
             RedirectToAction("Detail", new { id = model.Id });

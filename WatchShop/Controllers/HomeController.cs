@@ -44,7 +44,7 @@ namespace WatchShop.Controllers
 
         public ActionResult Special()
         {
-            var model = db.Products.Where(p => p.Special == true).Take(4);
+            var model = db.Products.OrderByDescending(p=>p.Views).Take(3);
             return PartialView("_Special", model);
         }
         public ActionResult Saleoff()
