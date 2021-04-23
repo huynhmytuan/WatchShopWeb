@@ -13,3 +13,9 @@
     max-width: 100%;
     height: auto;
 }
+
+.center-page {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
