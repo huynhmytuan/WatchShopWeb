@@ -1,92 +1,128 @@
 ﻿@model IEnumerable<WatchShop.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý";
 }
 
-<h2 class="center-page" style="text-align:center"><b>QUẢN LÝ SẢN PHẨM</b></h2>
-
-<p>
-    @Html.ActionLink("Thêm sản phẩm mới", "create", null, new {@class = "btn hvr-hover" })
-</p>
-<br />
-
-<table class="table" style="padding:4px,50px,4px,50px">
-    <tr style="background-color: #b0b435;color: white">
-        <th>
-            Loại sản phẩm
-        </th>
-        <th>
-            Hãng
-        </th>
-        <th>
-            Tên sản phẩm
-        </th>
-        <th>
-            Đơn vị
-        </th>
-        <th>
-            Đơn giá
-        </th>
-        <th>
-            Hình ảnh
-        </th>
-        <th>
-            Mô tả
-        </th>
-        <th>
-            Số lượng
-        </th>
-        <th>
-            Giảm giá
-        </th>
-        <th>
-            Chức năng
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Quản lý sản phẩm</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                    <li class="breadcrumb-item active">QUẢN LÝ SẢN PHẨM</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+@{
+    if (User.IsInRole("Admin"))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitBrief)
-            </td>
-            <td>
-                <!--Display currency Vnd Format-->
-                @{
-                    var price = item.UnitPrice;
-                    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-                    var result = price.ToString("#,###", cul.NumberFormat);
-                    <h5> @result đ </h5>
-                }
-            </td>
-            <td>
-                <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount)
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id },new {@class = "btn hvr-hover" })
-                <br />__________
-                @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn hvr-hover" })
-            </td>
-        </tr>
-    }
+        <div class="container">
+            <div class="row">
+                <h2><b>Chọn giao diện hiển thị:</b></h2>
+                <br />
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.ActionLink("GIAO DIỆN NGƯỜI DÙNG", "Index", "Products", null, new { @class = "hvr-hover col-md-6 ", @style = "color:white" })
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink("GIAO DIỆN QUẢN LÝ", "Index", "ManageProducts", null, new { @class = "hvr-hover col-md-6", @style = "color:white" })
+                </div>
+            </div>
+            <br />
+        </div>
 
-</table>
+    }
+}
+<div class="container">
+    <p>
+        @Html.ActionLink("Thêm sản phẩm mới", "create", null, new { @class = "btn hvr-hover", @style = "color:white" })
+    </p>
+    <br />
+    <table class="table" style="padding:4px,50px,4px,50px">
+        <tr style="background-color: #b0b435;color: white">
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Hãng
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Đơn vị
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Giảm giá
+            </th>
+            <th>
+                Chức năng
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitBrief)
+                </td>
+                <td>
+                    <!--Display currency Vnd Format-->
+                    @{
+                        var price = item.UnitPrice;
+                        var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                        var result = price.ToString("#,###", cul.NumberFormat);
+                        <h5> @result đ </h5>
+                    }
+                </td>
+                <td>
+                    <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @class = "btn hvr-hover", @style = "color:white" })
+                    <br />__________
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn hvr-hover", @style = "color:white" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

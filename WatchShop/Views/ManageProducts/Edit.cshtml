@@ -3,19 +3,33 @@
 @{
     ViewBag.Title = "Chỉnh sửa";
 }
-<div class="center-page">
-    <h2 class="center-page" style="text-align:center"><b>CHỈNH SỬA SẢN PHẨM </b></h2>
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Quản lý sản phẩm</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                    <li class="breadcrumb-item active">QUẢN LÝ SẢN PHẨM</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2 class="center-side" style="text-align:center"><b>CHỈNH SỬA SẢN PHẨM </b></h2>
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="table" style="padding:4px,50px,4px,50px">
+        <div class="table center-page" style="padding:4px,50px,4px,50px">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
-                <h5>Tên sản phẩm</h5>
+                <h5  style="font-weight:bold">Tên sản phẩm</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -23,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Đơn vị</h5>
+                <h5  style="font-weight:bold">Đơn vị</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.UnitBrief, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UnitBrief, "", new { @class = "text-danger" })
@@ -31,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Đơn giá</h5>
+                <h5 style="font-weight:bold">Đơn giá</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
@@ -39,7 +53,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Hình ảnh</h5>
+                <h5 style="font-weight:bold">Hình ảnh</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
@@ -47,7 +61,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Thời gian nhập</h5>
+                <h5 style="font-weight:bold">Thời gian nhập</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ProductDate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ProductDate, "", new { @class = "text-danger" })
@@ -55,7 +69,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Sản phầm có sẵn</h5>
+                <h5 style="font-weight:bold">Sản phầm có sẵn</h5>
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Available)
@@ -65,7 +79,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Mô tả</h5>
+                <h5 style="font-weight:bold">Mô tả</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -73,7 +87,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Loại sản phẩm</h5>
+                <h5 style="font-weight:bold">Loại sản phẩm</h5>
                 <div class="col-md-10">
                     @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
@@ -81,7 +95,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Hãng</h5>
+                <h5 style="font-weight:bold">Hãng</h5>
                 <div class="col-md-10">
                     @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
@@ -89,7 +103,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Số lượng</h5>
+                <h5 style="font-weight:bold">Số lượng</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
@@ -97,7 +111,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Giảm giá</h5>
+                <h5 style="font-weight:bold">Giảm giá</h5>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
@@ -105,7 +119,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Sản phẩm đặc biệt</h5>
+                <h5 style="font-weight:bold">Sản phẩm đặc biệt</h5>
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Special)
@@ -115,7 +129,7 @@
             </div>
 
             <div class="form-group">
-                <h5>Sản phẩm mới</h5>
+                <h5 style="font-weight:bold">Sản phẩm mới</h5>
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Latest)

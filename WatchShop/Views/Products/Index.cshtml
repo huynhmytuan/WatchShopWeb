@@ -10,6 +10,25 @@
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
         <div class="container">
+            @{
+                if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        <h2><b>Chọn giao diện hiển thị:</b></h2>
+                        <br />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("GIAO DIỆN NGƯỜI DÙNG", "Index", "Products", null, new { @class = "hvr-hover col-md-6 ", @style = "color:white" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ActionLink("GIAO DIỆN QUẢN LÝ", "Index", "ManageProducts", null, new { @class = "hvr-hover col-md-6", @style = "color:white" })
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
+
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                     <div class="right-product-box">

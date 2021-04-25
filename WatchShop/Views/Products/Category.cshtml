@@ -10,6 +10,24 @@
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
         <div class="container">
+            @{
+                if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        <h2><b>Chọn giao diện hiển thị:</b></h2>
+                        <br />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("Giao diện người dùng", "Index", "Products", null, new { @class = "hvr-hover col-md-6" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ActionLink("Giao diện quản lý", "Index", "ManageProducts", null, new { @class = "hvr-hover col-md-6" })
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                     <div class="right-product-box">
@@ -139,7 +157,7 @@
                                 <h4>@Model.First().Category.Name - @Html.ActionLink("Xóa", "Index", "Products")</h4>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                               @Html.Partial("_Category")
+                                @Html.Partial("_Category")
                             </div>
                         </div>
 

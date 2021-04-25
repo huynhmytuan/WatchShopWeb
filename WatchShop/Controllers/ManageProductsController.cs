@@ -10,6 +10,7 @@ using WatchShop.Models;
 
 namespace WatchShop.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ManageProductsController : Controller
     {
         private WatchShopContext db = new WatchShopContext();

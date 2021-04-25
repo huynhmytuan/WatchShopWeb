@@ -11,7 +11,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2>Quản lý tài khoản</h2>
-                <h3>@Model.</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
                     <li class="breadcrumb-item active">Tài Khoản</li>
@@ -25,6 +24,11 @@
 <div class="my-account-box-main">
     <div class="container">
         <div class="my-account-page">
+            <div class="row">
+                <h2>
+                    <b>Bạn đang đăng nhập bằng tài khoản:</b> @User.Identity.Name
+                </h2>
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-12">
                     <div class="account-box">
