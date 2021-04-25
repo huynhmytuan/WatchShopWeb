@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WatchShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="center-page" style="text-align:center"><b>QUẢN LÝ SẢN PHẨM</b></h2>
+
+<p>
+    @Html.ActionLink("Thêm sản phẩm mới", "create", null, new {@class = "btn hvr-hover" })
+</p>
+<br />
+
+<table class="table" style="padding:4px,50px,4px,50px">
+    <tr style="background-color: #b0b435;color: white">
+        <th>
+            Loại sản phẩm
+        </th>
+        <th>
+            Hãng
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Đơn vị
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giảm giá
+        </th>
+        <th>
+            Chức năng
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitBrief)
+            </td>
+            <td>
+                <!--Display currency Vnd Format-->
+                @{
+                    var price = item.UnitPrice;
+                    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                    var result = price.ToString("#,###", cul.NumberFormat);
+                    <h5> @result đ </h5>
+                }
+            </td>
+            <td>
+                <img src="~/Content/img/products/@Html.DisplayFor(modelItem => item.Image)" class="img-fluid" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id },new {@class = "btn hvr-hover" })
+                <br />__________
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn hvr-hover" })
+            </td>
+        </tr>
+    }
+
+</table>

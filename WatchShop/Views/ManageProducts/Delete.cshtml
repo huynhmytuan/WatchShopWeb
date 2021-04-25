@@ -1,0 +1,68 @@
+﻿@model WatchShop.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="center-page">
+    <h2>Xác nhận:</h2>
+    <h3>Bạn có chắc muốn xóa sản phẩm này?</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <th>Loại sản phẩm</th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            <th>Hãng</th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.Name)
+        </dd>
+
+        <dt>
+            <th>Tên sản phẩm</th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <th>Đơn giá</th>
+        </dt>
+
+        <dd>
+            <!--Display currency Vnd Format-->
+            @{
+                var price = Model.UnitPrice;
+                var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+                var result = price.ToString("#,###", cul.NumberFormat);
+                <h5> @result đ </h5>
+            }
+        </dd>
+
+        <dt>
+            <th>Hình ảnh</th>
+        </dt>
+
+        <dd>
+            <img src="~/Content/img/products/@Html.DisplayFor(modelItem => Model.Image)" class="img-fluid" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "Index")
+        </div>
+    }
+</div>
