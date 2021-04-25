@@ -135,13 +135,12 @@
                         </div>
                         <div class="filter-sidebar-left">
                             <div class="title-left">
-                                <h3>Loại đồng hồ </h3>
-                                <h4>Tất cả</h4>
+                                <h3>Loại đồng hồ</h3>
+                                <h4>@Model.First().Category.Name - @Html.ActionLink("Xóa", "Index", "Products")</h4>
                             </div>
-                            @{
-                                @Html.Partial("_Category")
-                            }
-
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                               @Html.Partial("_Category")
+                            </div>
                         </div>
 
                     </div>
@@ -150,9 +149,9 @@
         </div>
     </div>
     <!-- End Shop Page -->
-        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-        @section scripts{
-            <script>
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    @section scripts{
+        <script>
                 $(function () {
                     $(".add-to-cart").click(function () {
                         pid = $(this).attr("data-id");
@@ -175,26 +174,26 @@
                         $("#i" + pid).effect("transfer", options, 500, function () { });
                     });
                 });
-            </script>
-        }
-        <!-- ALL JS FILES -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <!-- ALL PLUGINS -->
-        <script src="js/jquery.superslides.min.js"></script>
-        <script src="js/bootstrap-select.js"></script>
-        <script src="js/inewsticker.js"></script>
-        <script src="js/bootsnav.js."></script>
-        <script src="js/images-loded.min.js"></script>
-        <script src="js/isotope.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/baguetteBox.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
-        <script src="js/jquery.nicescroll.min.js"></script>
-        <script src="js/form-validator.min.js"></script>
-        <script src="js/contact-form-script.js"></script>
-        <script src="js/custom.js"></script>
+        </script>
+    }
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>

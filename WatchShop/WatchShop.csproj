@@ -369,6 +369,8 @@
     <Content Include="Views\Home\Supplier.cshtml" />
     <Content Include="Views\Shared\_SideCart.cshtml" />
     <Content Include="Views\Products\Supplier.cshtml" />
+    <Content Include="Views\Products\Category.cshtml" />
+    <Content Include="Views\Shared\_Category.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

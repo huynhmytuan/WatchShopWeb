@@ -40,6 +40,7 @@ namespace WatchShop.Controllers
                 db.Products.Remove(prod);
                 db.SaveChanges();
                 prod.Views = prod.Views + 1;
+                prod.Quantity = prod.Quantity - p.Quantity;
                 db.Products.Add(prod);
                 db.OrderDetails.Add(d);
             }

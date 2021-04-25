@@ -1,0 +1,10 @@
+﻿<div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+    @{
+        WatchShop.Models.WatchShopContext db = new WatchShop.Models.WatchShopContext();
+        var model = db.Categories;
+        foreach (var item in model)
+        {
+            <a href="@Url.Action("Category", "Products", new { id = item.Id })" class="list-group-item list-group-item-action"> @item.Name <small class="text-muted">(@item.Products.Count) </small></a>
+        }
+    }
+</div>

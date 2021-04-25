@@ -1,11 +1,13 @@
-﻿@model IEnumerable<WatchShop.Models.Supplier>
-
-<li class="dropdown">
+﻿<li class="dropdown">
     <a href="#" class="nav-link" data-toggle="dropdown">Thương Hiệu</a>
     <ul class="dropdown-menu">
-        @foreach(var item in Model)
+        @{
+            WatchShop.Models.WatchShopContext db = new WatchShop.Models.WatchShopContext();
+            var model = db.Categories;
+            foreach (var item in Model)
             {
                 <li><a href="@Url.Action("Supplier","Products",new {id = item.Id })">@item.Name</a></li>
             }
+        }
     </ul>
 </li>
